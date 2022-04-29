@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  deinoml:
+    container_name: deinoml
+    build: ../webapp
+    command: [npm, run, dev]
+    # environment:
+    ports:
+      - 3105:3105
+    networks:
+      - deinoml
+  cassandra:
+    container_name: cassandra
+    image: cassandra:latest
+    networks:
+      - deinoml
+networks:
+  deinoml:
+    name: deinoml
